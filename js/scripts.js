@@ -17,7 +17,17 @@ Pizza.prototype.addToppings = function(toppings) {
 }
 
 Pizza.prototype.calcTotalCost = function () {
-  if (this.toppingsQuantity >= 6) {
+  if (this.size === "xtra-large") { // if/else for price adjustment based on size
+    this.totalCost += 14;
+  } else if (this.size === "large") {
+    this.totalCost += 12;
+  } else if (this.size === "medium") {
+    this.totalCost += 10;
+  } else if (this.size === "small") {
+    this.totalCost += 8;
+  }
+  
+  if (this.toppingsQuantity >= 6) { // if/else for pirce adjustment based on topping quantity
     this.totalCost += 12;
   } else if (this.toppingsQuantity === 5) {
       this.totalCost += 10; 
@@ -34,22 +44,21 @@ Pizza.prototype.calcTotalCost = function () {
 // User Interface Logic //
 
 $(document).ready(function() {
-  let pizzaOrder = new Pizza();
+  let pizzaOrder = new Pizza(); // Pizza constructor for order
 
   $("form#orderForm").submit(function(event) {
     event.preventDefault;
 
     let pizzaSize = $("input:radio[name=size]:checked").val(); // Get value of pizza size from user
-    console.log(pizzaSize);
     pizzaOrder.addSize(pizzaSize);  // Push size to Pizza object
 
     $("input:checkbox[name=topping]:checked").each(function() { // Collect data from checkboxes
       toppingsArray = $(this).val();
-      pizzaOrder.addToppings(toppingsArray)
+      pizzaOrder.addToppings(toppingsArray); // Push checkbox data to pizza object
     });
-
     
-    // pizzaOrder.addToppings("artichoke", quantity);
+    let total = pizzaOrder.calcTotalCost();
+    $("#receipt").text(total); // Print total 
 
     console.log(pizzaOrder);
   });
