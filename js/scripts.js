@@ -11,9 +11,9 @@ Pizza.prototype.addSize = function(size) {
   this.size += size;
 }
 
-Pizza.prototype.addToppings = function(toppings, quantity) {
+Pizza.prototype.addToppings = function(toppings) {
   this.toppingsList.push(toppings);
-  this.toppingsQuantity += quantity;
+  this.toppingsQuantity += this.toppingsList.length;
 }
 
 Pizza.prototype.calcTotalCost = function () {
@@ -28,6 +28,7 @@ Pizza.prototype.calcTotalCost = function () {
   } else {
       this.totalCost += 0;
   }
+  return this.totalCost
 }
 
 // User Interface Logic //
@@ -40,16 +41,14 @@ $(document).ready(function() {
 
     let pizzaSize = $("input:radio[name=size]:checked").val(); // Get value of pizza size from user
     console.log(pizzaSize);
-    // let quantity = parseInt($("input[type=checkbox]:checked").val());
-    // console.log(quantity);
+    pizzaOrder.addSize(pizzaSize);  // Push size to Pizza object
 
-    $("input:checkbox[name=topping]:checked").each(function() {
-      let toppingsArray = $(this).val();
-      let quantity = toppingsArray.length;
-      pizzaOrder.addToppings(toppingsArray, quantity)
+    $("input:checkbox[name=topping]:checked").each(function() { // Collect data from checkboxes
+      toppingsArray = $(this).val();
+      pizzaOrder.addToppings(toppingsArray)
     });
 
-    pizzaOrder.addSize(pizzaSize);
+    
     // pizzaOrder.addToppings("artichoke", quantity);
 
     console.log(pizzaOrder);
