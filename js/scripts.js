@@ -13,6 +13,10 @@ Pizza.prototype.addSize = function(size) {
 
 Pizza.prototype.addToppings = function(toppings) {
   this.toppingsList.push(toppings);
+  // this.toppingsQuantity += this.toppingsList.length;
+}
+
+Pizza.prototype.addToppingsQuantity = function() {
   this.toppingsQuantity += this.toppingsList.length;
 }
 
@@ -28,13 +32,13 @@ Pizza.prototype.calcTotalCost = function () {
   }
   
   if (this.toppingsQuantity >= 6) { // if/else for pirce adjustment based on topping quantity
-    this.totalCost += 12;
+    this.totalCost += 8;
   } else if (this.toppingsQuantity === 5) {
-      this.totalCost += 10; 
+      this.totalCost += 6; 
   } else if (this.toppingsQuantity === 4) {
-      this.totalCost += 8;
+      this.totalCost += 4;
   } else if (this.toppingsQuantity === 3) {
-      this.totalCost += 6;
+      this.totalCost += 2;
   } else {
       this.totalCost += 0;
   }
@@ -56,8 +60,10 @@ $(document).ready(function() {
       toppingsArray = $(this).val();
       pizzaOrder.addToppings(toppingsArray); // Push checkbox data to pizza object
     });
-    
+    pizzaOrder.addToppingsQuantity(); // Quantifies how many toppings user added
+
     let total = pizzaOrder.calcTotalCost();
+    
     $("#receipt").text(total); // Print total 
 
     console.log(pizzaOrder);
