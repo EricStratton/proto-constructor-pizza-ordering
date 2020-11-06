@@ -7,7 +7,6 @@ function Pizza() {
   this.totalCost = 0;
 }
 
-
 Pizza.prototype.addSize = function(size) {
   this.size += size;
 }
@@ -31,32 +30,28 @@ Pizza.prototype.calcTotalCost = function () {
   }
 }
 
-// function Toppings() {
-//   this.artichoke = artichoke;
-//   this.blackOlives = blackOlives;
-//   this.tomatoes = tomatoes;
-//   this.pepperoncini = pepperoncini;
-//   this.kalamata = kalamata;
-//   this.balsamic = balsamic;
-// }
-
 // User Interface Logic //
 
 $(document).ready(function() {
   let pizzaOrder = new Pizza();
 
-  $("#orderForm").submit(function(event) {
+  $("form#orderForm").submit(function(event) {
     event.preventDefault;
 
-    let pizzaSize = $("input:radio[name=size]:checked").val();
+    let pizzaSize = $("input:radio[name=size]:checked").val(); // Get value of pizza size from user
     console.log(pizzaSize);
-    let quantity = $("input:checkbox[name=toppings]:checked").val();
-    console.log(quantity);
+    // let quantity = parseInt($("input[type=checkbox]:checked").val());
+    // console.log(quantity);
+
+    $("input:checkbox[name=topping]:checked").each(function() {
+      let toppingsArray = $(this).val();
+      let quantity = toppingsArray.length;
+      pizzaOrder.addToppings(toppingsArray, quantity)
+    });
 
     pizzaOrder.addSize(pizzaSize);
-    pizzaOrder.addToppings(quantity);
+    // pizzaOrder.addToppings("artichoke", quantity);
 
+    console.log(pizzaOrder);
   });
-
-
 });
