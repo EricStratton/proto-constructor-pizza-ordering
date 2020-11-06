@@ -18,7 +18,6 @@ Pizza.prototype.addToppings = function(toppings, quantity) {
 }
 
 Pizza.prototype.calcTotalCost = function () {
-  // let cost = 0;
   if (this.toppingsQuantity >= 6) {
     this.totalCost += 12;
   } else if (this.toppingsQuantity === 5) {
@@ -43,9 +42,21 @@ Pizza.prototype.calcTotalCost = function () {
 
 // User Interface Logic //
 
-
 $(document).ready(function() {
-  let pizza;
   let pizzaOrder = new Pizza();
 
-})
+  $("#orderForm").submit(function(event) {
+    event.preventDefault;
+
+    let pizzaSize = $("input:radio[name=size]:checked").val();
+    console.log(pizzaSize);
+    let quantity = $("input:checkbox[name=toppings]:checked").val();
+    console.log(quantity);
+
+    pizzaOrder.addSize(pizzaSize);
+    pizzaOrder.addToppings(quantity);
+
+  });
+
+
+});
