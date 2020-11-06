@@ -2,8 +2,8 @@
 
 function Pizza() {
   this.size = "";
-  this.toppingsQuantity = 0;
   this.toppingsList = [];
+  this.toppingsQuantity = 0;
   this.totalCost = 0;
 }
 
@@ -13,7 +13,6 @@ Pizza.prototype.addSize = function(size) {
 
 Pizza.prototype.addToppings = function(toppings) {
   this.toppingsList.push(toppings);
-  // this.toppingsQuantity += this.toppingsList.length;
 }
 
 Pizza.prototype.addToppingsQuantity = function() {
@@ -57,15 +56,12 @@ $(document).ready(function() {
     pizzaOrder.addSize(pizzaSize);  // Push size to Pizza object
 
     $("input:checkbox[name=topping]:checked").each(function() { // Collect data from checkboxes
-      toppingsArray = $(this).val();
+      let toppingsArray = $(this).val();
       pizzaOrder.addToppings(toppingsArray); // Push checkbox data to pizza object
     });
     pizzaOrder.addToppingsQuantity(); // Quantifies how many toppings user added
 
-    let total = pizzaOrder.calcTotalCost();
-    
-    $("#receipt").text(total); // Print total 
-
-    console.log(pizzaOrder);
+    $("#receipt").text("$" + pizzaOrder.calcTotalCost()); // Print total 
+    $("#total").show();
   });
 });
