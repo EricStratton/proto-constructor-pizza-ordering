@@ -1,3 +1,27 @@
+body {
+  background-color: darkolivegreen;
+  font-family: Bookman, URW Bookman L, serif;
+  font-size: x-large;
+}
+
+.jumbotron {
+  font-family: Bookman, URW Bookman L, serif;
+  font-size: larger;
+  background-color: papayawhip;
+  background-size: cover;
+}
+
+#orderForm {
+  color: white;
+}
+
+.button {
+  background-color: crimson;
+  color: white;
+}
+
 #total {
   display: none;
+  color: white;
+  font-size: x-large;
 }

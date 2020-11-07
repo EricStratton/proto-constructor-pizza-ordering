@@ -47,20 +47,18 @@ Pizza.prototype.calcTotalCost = function () {
 // User Interface Logic //
 
 $(document).ready(function() {
-  let pizzaOrder = new Pizza(); // Pizza constructor for order
+  let pizzaOrder = new Pizza(); // Create new order object
 
   $("form#orderForm").submit(function(event) {
     event.preventDefault;
-
     let pizzaSize = $("input:radio[name=size]:checked").val(); // Get value of pizza size from user
-    pizzaOrder.addSize(pizzaSize);  // Push size to Pizza object
-
+    pizzaOrder.addSize(pizzaSize);// Push size to Pizza object
+      
     $("input:checkbox[name=topping]:checked").each(function() { // Collect data from checkboxes
       let toppingsArray = $(this).val();
       pizzaOrder.addToppings(toppingsArray); // Push checkbox data to pizza object
     });
     pizzaOrder.addToppingsQuantity(); // Quantifies how many toppings user added
-
     $("#receipt").text("$" + pizzaOrder.calcTotalCost()); // Print total 
     $("#total").show();
   });
