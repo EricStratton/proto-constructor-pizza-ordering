@@ -47,10 +47,10 @@ Pizza.prototype.calcTotalCost = function () {
 // User Interface Logic //
 
 $(document).ready(function() {
-  let pizzaOrder = new Pizza(); // Create new order object
-
   $("form#orderForm").submit(function(event) {
     event.preventDefault;
+    let pizzaOrder = new Pizza();
+
     let pizzaSize = $("input:radio[name=size]:checked").val(); // Get value of pizza size from user
     pizzaOrder.addSize(pizzaSize);// Push size to Pizza object
       
