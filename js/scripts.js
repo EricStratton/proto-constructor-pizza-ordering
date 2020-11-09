@@ -30,7 +30,7 @@ Pizza.prototype.calcTotalCost = function () {
     this.totalCost += 8;
   }
   
-  if (this.toppingsQuantity >= 6) { // if/else for pirce adjustment based on topping quantity
+  if (this.toppingsQuantity >= 6) { // if/else for price adjustment based on topping quantity
     this.totalCost += 8;
   } else if (this.toppingsQuantity === 5) {
       this.totalCost += 6; 
@@ -48,7 +48,7 @@ Pizza.prototype.calcTotalCost = function () {
 
 $(document).ready(function() {
   $("form#orderForm").submit(function(event) {
-    event.preventDefault;
+    event.preventDefault();
     let pizzaOrder = new Pizza();
 
     let pizzaSize = $("input:radio[name=size]:checked").val(); // Get value of pizza size from user
@@ -60,6 +60,6 @@ $(document).ready(function() {
     });
     pizzaOrder.addToppingsQuantity(); // Quantifies how many toppings user added
     $("#receipt").text("$" + pizzaOrder.calcTotalCost()); // Print total 
-    $("#total").show();
+    $("#total").show(); 
   });
 });
