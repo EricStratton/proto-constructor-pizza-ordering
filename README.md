@@ -68,7 +68,7 @@ Test: "It will calculate cost of pizza based on size and number of toppings"
 
 ## Known Bugs
 
-Program does not print total at this time.
+There are no known bugs at this time.
 
 ## Support & Contact Details
 
