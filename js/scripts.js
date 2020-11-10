@@ -59,7 +59,9 @@ $(document).ready(function() {
       pizzaOrder.addToppings(toppingsArray); // Push checkbox data to pizza object
     });
     pizzaOrder.addToppingsQuantity(); // Quantifies how many toppings user added
-    $("#receipt").text("$" + pizzaOrder.calcTotalCost()); // Print total 
+    $("#cost").text("$" + pizzaOrder.calcTotalCost()); // Print total 
+    $("#size").text(pizzaOrder.size);
+    $("#finalToppings").text(pizzaOrder.toppingsList.toString());
     $("#total").show(); 
   });
 });
