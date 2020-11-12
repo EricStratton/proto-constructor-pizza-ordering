@@ -61,7 +61,7 @@ $(document).ready(function() {
     pizzaOrder.addToppingsQuantity(); // Quantifies how many toppings user added
     $("#cost").text("$" + pizzaOrder.calcTotalCost()); // Print total 
     $("#size").text(pizzaOrder.size);
-    $("#finalToppings").text(pizzaOrder.toppingsList.toString());
+    $("#finalToppings").text(pizzaOrder.toppingsList.join(", "));
     $("#total").show(); 
   });
 });
